@@ -16,8 +16,9 @@ const io = new Server(server, {
 });
 
 io.on('connection', (socket) => {
-    socket.on('nuevo registro', (nameUser) => {
-        guardarUsuarioEnServidor(socket.id, nameUser)
+    socket.on('nuevo registro', (datos) => {
+        console.log(datos);
+        guardarUsuarioEnServidor(socket.id, datos.nameUser, datos.passUser)
         .then(status => {
             console.log(status);
         })
@@ -32,19 +33,20 @@ io.on('connection', (socket) => {
     })
 })
 
-function guardarUsuarioEnServidor(idSocket, nameUser) {
+function guardarUsuarioEnServidor(idSocket, nameUser,passUser) {
     var formData = new FormData();
     formData.append('nameUser', nameUser);
+    formData.append('passUser', passUser);
     formData.append('idSocket', idSocket);
 
     return new Promise((resolve, reject) => {
         fetch('http://localhost/miChat/conexion/GuardarUsuario.php', {
-            method: 'POST',
+            method: 'POST', 
             body: formData
         })
-        .then(response => response.json())
+        .then(response => response.text())
         .then(data => {
-            resolve(data.msg);
+            resolve(data);
         })
         .catch(error => {
             console.error('Error al enviar la solicitud Fetch', error);
