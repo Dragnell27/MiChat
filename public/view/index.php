@@ -8,21 +8,18 @@
     <title>Mi chat</title>
     <link rel="stylesheet" href="../css/style.css">
     <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <!-- <script src="../js/socket.io.min.js"></script> -->
 </head>
 
 <body>
     <div id="fondo">
-        <!-- <div class="contenido">
-            <ul id="mensajes"></ul>
-            <form id="form">
-                <input type="text" id="input" autocomplete="off" placeholder="Nuevo mensaje">
-                <button type="submit" id="Enviar">Enviar</button>
-            </form>
-        </div> -->
     </div>
-    </div>
-    <script>const socket = io('http://localhost:3000');</script>
-    <!-- <script src="../js/mensajes.js"></script> -->
+    <ul id="contentMsg">
+    </ul>
+    <script>
+        const socket = io('http://localhost:3000');
+    </script>
+    <script id="scriptMensajes"></script>
     <script src="../js/login.js"></script>
     <script id="eventos"></script>
 </body>

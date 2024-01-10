@@ -57,3 +57,20 @@ body{
     height: 100%;
     position: relative;
 }
+
+
+/* Modal */
+#contentMsg{
+    position: fixed;
+    right: 10px;
+    width: 250px;
+    bottom: 100px;
+}
+.modal {
+    color: white !important;
+    display: block;
+    background-color: #02B126;
+    border-radius: 4px;
+    padding: 10px;
+    margin: 5px;
+}

@@ -1,4 +1,33 @@
 const contenedor = document.getElementById('fondo');
+const contentMsg = document.getElementById('contentMsg');
+
+function eliminarMensajes(){
+    if (contentMsg.childNodes.length > 0) {
+        contentMsg.removeChild(contentMsg.childNodes[0]);
+    }
+}
+
+setInterval(eliminarMensajes,2000);
+
+socket.on('inicio exitoso',(msg) => {
+    contenedor.innerHTML = `<div class="contenido">
+    <ul id="mensajes"></ul>
+    <form id="form">
+        <input type="text" id="input" autocomplete="off" placeholder="Nuevo mensaje">
+        <button type="submit" id="Enviar">Enviar</button>
+    </form>
+</div>`;
+const script = document.getElementById('scriptMensajes');
+script.src = '../js/mensajes.js';
+setTimeout(function () {
+    alertPersonalizado(msg);
+}, 300);
+});
+
+function alertPersonalizado(msg){
+    const msgNotification = `<li id="myModal" class="modal">`+msg+`</li>`;
+    contentMsg.insertAdjacentHTML('beforeend', msgNotification);
+}
 
 if (contenedor) {
     const elemento =

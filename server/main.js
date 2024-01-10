@@ -17,10 +17,16 @@ const io = new Server(server, {
 
 io.on('connection', (socket) => {
     socket.on('nuevo registro', (datos) => {
-        console.log(datos);
         guardarUsuarioEnServidor(socket.id, datos.nameUser, datos.passUser)
-        .then(status => {
-            console.log(status);
+        .then(data => {
+            data = JSON.parse(data);
+            console.log(data.msg);
+            if (data.status === "ok") {
+                socket.emit('inicio exitoso', '!Hola¡ '+data.newUser+'. \n Bienvenido.');
+                socket.broadcast.emit('Nuevo usuario conectado',data.newUser+ ', Se a conectado.');
+            }else{
+                console.log('hubo un error: ' + data.msg);
+            }
         })
         .catch(error => {
             console.error('Error:', error);
