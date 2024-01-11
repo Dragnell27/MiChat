@@ -23,7 +23,7 @@ io.on('connection', (socket) => {
             console.log(data.msg);
             if (data.status === "ok") {
                 socket.emit('inicio exitoso', '!Hola¡ '+data.newUser+'. \n Bienvenido.');
-                socket.broadcast.emit('Nuevo usuario conectado',data.newUser+ ', Se a conectado.');
+                socket.broadcast.emit('Nuevo usuario conectado',data.newUser+ ', Se ha conectado.');
             }else{
                 console.log('hubo un error: ' + data.msg);
             }
