@@ -16,6 +16,8 @@ socket.on('Nuevo usuario conectado',(msg) => {
     alertPersonalizado(msg);
 });
 
+
+
 function alertPersonalizado(msg){
     const msgNotification = `<li id="myModal" class="modal">`+msg+`</li>`;
     contentMsg.insertAdjacentHTML('beforeend', msgNotification);
