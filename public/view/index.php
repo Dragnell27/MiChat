@@ -12,6 +12,9 @@
 </head>
 
 <body>
+    <div id="titulo">
+        <h3>Mi chat</h3>
+    </div>
     <div id="fondo">
     </div>
     <ul id="contentMsg">

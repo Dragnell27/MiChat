@@ -1,15 +1,16 @@
 const contenedor = document.getElementById('fondo');
 const contentMsg = document.getElementById('contentMsg');
 
-function eliminarMensajes(){
+function eliminarMensajes() {
     if (contentMsg.childNodes.length > 0) {
         contentMsg.removeChild(contentMsg.childNodes[0]);
     }
 }
 
-setInterval(eliminarMensajes,2000);
+setInterval(eliminarMensajes, 2000);
 
-socket.on('inicio exitoso',(msg) => {
+socket.on('inicio exitoso', (datosUser) => {
+    sessionStorage.setItem('newUser', datosUser['user']);
     contenedor.innerHTML = `<div class="contenido">
     <ul id="mensajes"></ul>
     <form id="form">
@@ -17,19 +18,20 @@ socket.on('inicio exitoso',(msg) => {
         <button type="submit" id="Enviar">Enviar</button>
     </form>
 </div>`;
-const script = document.getElementById('scriptMensajes');
-script.src = '../js/mensajes.js';
-setTimeout(function () {
-    alertPersonalizado(msg);
-}, 300);
+    console.log(sessionStorage.getItem('newUser'));
+    const script = document.getElementById('scriptMensajes');
+    script.src = '../js/mensajes.js';
+    setTimeout(function () {
+        alertPersonalizado(datosUser['msg']);
+    }, 500);
 });
 
-function alertPersonalizado(msg){
-    const msgNotification = `<li id="myModal" class="modal">`+msg+`</li>`;
+function alertPersonalizado(msg) {
+    const msgNotification = `<li id="myModal" class="modal">` + msg + `</li>`;
     contentMsg.insertAdjacentHTML('beforeend', msgNotification);
 }
 
-if (contenedor) {
+if (contenedor && sessionStorage.getItem('newUser') == null) {
     const elemento =
         `<div>
             <button id="btnRegistrarse">Registrarse</button>
@@ -40,30 +42,7 @@ if (contenedor) {
     const btnRegistrase = document.getElementById('btnRegistrarse');
     btnRegistrase.addEventListener('click', () => {
         contenedor.innerHTML = registro;
-        const nuevoScript = document.createElement('script');
-        nuevoScript.id = 'eventos';
-        nuevoScript.innerHTML = `const formNewUser = document.getElementById('guardarUsuario');
-            formNewUser.addEventListener('submit', (e) => {
-                const nameUser = document.getElementById('nameUser');
-                const passUser = document.getElementById('passUser');
-
-                var datos = {
-                    "passUser" : passUser.value,
-                    "nameUser" : nameUser.value
-                }
-                console.log(datos);
-                e.preventDefault();
-                if (nameUser.value && passUser.value) {
-                    socket.emit('nuevo registro', datos);
-                    nameUser.value = '';
-                    passUser.value = '';
-                }
-            });`;
-        const scriptExistente = document.getElementById('eventos');
-        if (scriptExistente) {
-            scriptExistente.parentNode.removeChild(scriptExistente);
-        }
-        document.body.appendChild(nuevoScript);
+        agregarScriptEventos();
     });
 
     const registro =
@@ -95,5 +74,40 @@ if (contenedor) {
         </div>
     </form>`;
 } else {
-    console.error('No se encontró el elemento con el ID "fondo".');
+    const scriptMsg  = document.getElementById('scriptMensajes');
+    contenedor.innerHTML = `<div class="contenido">
+    <ul id="mensajes"></ul>
+    <form id="form">
+        <input type="text" id="input" autocomplete="off" placeholder="Nuevo mensaje">
+        <button type="submit" id="Enviar">Enviar</button>
+    </form>
+    </div>`;
+    scriptMsg.src = '../js/mensajes.js';
+}
+
+function agregarScriptEventos() {
+    const nuevoScript = document.getElementById('eventos');
+    if (nuevoScript) {
+        nuevoScript.parentNode.removeChild(nuevoScript);
+    }
+
+    const scriptEventos = document.createElement('script');
+    scriptEventos.id = 'eventos';
+    scriptEventos.innerHTML = `const formNewUser = document.getElementById('guardarUsuario');
+            formNewUser.addEventListener('submit', (e) => {
+                const nameUser = document.getElementById('nameUser');
+                const passUser = document.getElementById('passUser');
+
+                var datos = {
+                    "passUser" : passUser.value,
+                    "nameUser" : nameUser.value
+                }
+                e.preventDefault();
+                if (nameUser.value && passUser.value) {
+                    socket.emit('nuevo registro', datos);
+                    nameUser.value = '';
+                    passUser.value = '';
+                }
+            });`;
+    document.body.appendChild(scriptEventos);
 }

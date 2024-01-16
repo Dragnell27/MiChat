@@ -22,7 +22,11 @@ io.on('connection', (socket) => {
             data = JSON.parse(data);
             console.log(data.msg);
             if (data.status === "ok") {
-                socket.emit('inicio exitoso', '!Hola¡ '+data.newUser+'. \n Bienvenido.');
+                var datos = {
+                    'user': data.newUser,
+                    'msg' : '!Hola¡ '+data.newUser+'. \n Bienvenido.'
+                };
+                socket.emit('inicio exitoso', datos);
                 socket.broadcast.emit('Nuevo usuario conectado',data.newUser+ ', Se a conectado.');
             }else{
                 console.log('hubo un error: ' + data.msg);

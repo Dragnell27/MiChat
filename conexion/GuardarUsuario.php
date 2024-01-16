@@ -14,9 +14,6 @@ try {
     $query = 'insert into users values("' . $_POST["idSocket"] . '","' . $_POST["nameUser"] . '","' . $_POST["passUser"] . '")';
     $resultado = mysqli_query($con, $query);
     if ($resultado) {
-        session_start();
-        $_SESSION['usuario'] = $_POST["nameUser"];
-        $_SESSION['idSocket'] = $_POST["idSocket"];
         $data['status'] = 'ok';
         $data['msg'] = 'Usuario guardado exitosamente';
         $data['newUser'] = $_POST["nameUser"];
