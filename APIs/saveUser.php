@@ -20,4 +20,5 @@ try {
 }finally{
     $con->close();
 }
-echo json_encode($data);
+
+header("Location: http://localhost/MiChat/public/view/");

@@ -1,0 +1,327 @@
+body{
+    margin: 0;
+    padding: 0; 
+    overflow: hidden;
+}
+.container{
+    height: 98vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+}
+
+.header{
+    background-color: #222;
+    color: #fff;
+    padding: 10px;
+    width: 100vw;
+    height: 10vh;
+    position: fixed;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+.header-nav{
+    margin-right: 15px;
+}
+
+.header-ul{
+    display: flex;
+}
+
+.login-logout{
+    position: fixed;
+    right: 20px;
+    top: 30px;
+}
+
+.header-li{
+    list-style: none;
+    text-align: center;
+}
+.ll-li{
+    list-style: none;
+    padding: 0 10px;
+    text-align: center;
+}
+
+.ll-li:hover{
+    border-bottom: solid 1px #fff;
+}
+
+.ll-a{
+    all: unset;
+    text-decoration: none;
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+    
+}
+
+.content{
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 40%;
+    height: 80vh;
+    position: relative;
+    margin-top: 10vh;
+}
+
+@media (max-width: 768px) {
+    .content{
+        width: 100%;
+        margin-right: 10px;
+        margin-left: 10px;
+    }
+    .login-logout{
+        top: 55px;
+    }
+}
+
+.messages{  
+    list-style-type: none;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    height: 90%;
+    border-bottom: solid 1px #999;
+    overflow: auto;
+}
+
+.messages::-webkit-scrollbar {
+    width: 3px;
+}
+
+
+
+.messages::-webkit-scrollbar-thumb {
+    background: #333d;
+    border-radius: 6px;
+}
+
+.form{
+    width: 100%;
+    bottom: 0;
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 50px;
+    text-align: center;
+    box-sizing: border-box;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+}
+
+.input-mensajes{
+    border: 0;
+    border-bottom: 1px solid #222;
+    flex: 1;
+    margin: 4px;
+    padding: 0px 8px;
+    height: 100%;
+    display: flex;
+    box-sizing: border-box;
+    display: inline;
+}
+
+.input-mensajes:focus{
+    border: 0;
+    border-bottom: 2px solid #222;
+    outline: none;
+}
+
+.btn-send{
+    border-radius: 10px 20px;
+    border: 1px solid #222;
+    box-sizing: border-box;
+    background: #333;
+    height: 100%;
+    width: 70px;
+    display: inline-block;
+    cursor: pointer;
+    font-weight: 700;
+    color: #fff;
+}
+
+.btn-send:hover{
+    background-color: #028A0B;
+}
+
+.msg{
+    max-width: 70%;
+    color: #fff;
+    border-radius: 4px;
+    padding: 5px 30px;
+    margin: 5px;
+    white-space: normal;
+    border-radius: 10px 20px;
+}
+
+.name-user{
+    text-transform: capitalize;
+    
+}
+
+.container-msg{
+    position: relative;
+}
+
+.container-msg-div{
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    overflow: hidden;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.my-messages{
+    background-color: #333;
+}
+
+.my-messages p{
+    padding: 0;
+    margin: 0;
+    text-align: end;
+}
+
+.r-container-msg{
+    position: relative;
+}
+
+.r-container-msg-div{
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    overflow: hidden;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.received-messages{ 
+    background-color: #005C4B;
+}
+
+.received-messages p{ 
+    padding: 0;
+    margin: 0;
+    text-align: start;
+}
+
+.name-span{
+    font-size: 12px;
+    text-align: start;
+}
+
+.form-modal{
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: #222e;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.form-control{
+    width: 50vw;
+    height: 50vh;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 25%;
+    transition: top 1s;
+}
+
+.transition-modal{
+    top: 100%;
+}
+
+.close-modal{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+.form-text, .form-label{
+    display: block;
+    margin-top: 5px;
+}
+
+.form-label{
+    margin-top: 20px;
+}
+
+.form-label span{
+    color: #f55;
+}
+
+.form-text{
+    width: 45vw;
+    height: 30px;
+    border: 0;
+    border-bottom: solid 1px #222;
+}
+
+.form-text:focus{
+    border: 0;
+    border-bottom: 2px solid #222;
+    outline: none;
+}
+
+.form-btn{
+    text-align: center;
+}
+
+.btn{
+    margin-top: 20px;
+    border: none;
+    background-color: #005C4B;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 700;
+}
+.btn:hover{
+    transform: scale(1.1);
+}
+
+.close-modal:hover{
+    transform: scale(1.2);
+}
+
+.form-close{
+    z-index: -1;
+}
+
+
+/* Modal */
+#contentMsg{
+    position: fixed;
+    right: 10px;
+    width: 250px;
+    bottom: 100px;
+}
+.modal {
+    color: white !important;
+    display: block;
+    background-color: #02B126;
+    border-radius: 4px;
+    padding: 10px;
+    margin: 5px;
+}
+

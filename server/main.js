@@ -26,7 +26,7 @@ io.on('connection', (socket) => {
                     'user': data.newUser,
                     'msg' : '!Hola¡ '+data.newUser+'. \n Bienvenido.'
                 };
-                socket.emit('inicio exitoso', datos);
+                socket.emit('inicioexitoso', datos);
                 socket.broadcast.emit('Nuevo usuario conectado',data.newUser+ ', Se a conectado.');
             }else{
                 console.log('hubo un error: ' + data.msg);
@@ -37,8 +37,8 @@ io.on('connection', (socket) => {
         });
     })
 
-    socket.on('mensaje nuevo', (msg) => {
-        socket.emit('mensaje propio', msg, msg);
+    socket.on('newMessage', (msg) => {
+        socket.emit('mensaje propio', msg.text, msg.text);
         socket.broadcast.emit('mensaje nuevo', msg);
     })
 })
