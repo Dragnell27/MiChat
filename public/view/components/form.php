@@ -1,5 +1,5 @@
 <div class="form-modal form-close" id="form-modal">
-    <form class="form-control transition-modal" id="t-modal" action="">
+    <form class="form-control transition-modal" id="register">
         <div class="form-container">
             <div class="form-div">
                 <label for="nameUser" class="form-label" >Usuario:<span>*</span></label>

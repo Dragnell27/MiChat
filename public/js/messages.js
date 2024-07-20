@@ -38,7 +38,7 @@ socket.on('Nuevo usuario conectado', (msg) => {
     alertPersonalizado(msg);
 });
 
-function alertPersonalizado(msg) {
+export function alertPersonalizado(msg) {
     const msgNotification = `<li id="myModal" class="modal">` + msg + `</li>`;
     contentMsg.insertAdjacentHTML('beforeend', msgNotification);
 }
@@ -46,7 +46,7 @@ function alertPersonalizado(msg) {
 form.addEventListener('submit', (e) => {
     e.preventDefault()
 
-    const user = 'User1'
+    const user = localStorage.getItem('user');
     const msg = {
         user: user,
         text: input.value

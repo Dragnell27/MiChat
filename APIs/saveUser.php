@@ -4,7 +4,7 @@ include_once('./connection.php');
 $data = array();
 $con = con();
 try {
-    $query = 'insert into users values("' . $_POST["idSocket"] . '","' . $_POST["nameUser"] . '","' . $_POST["passUser"] . '")';
+    $query = 'insert into users (name_user,password) values("' . $_POST["nameUser"] . '","' . $_POST["passUser"] . '")';
     $resultado = mysqli_query($con, $query);
     if ($resultado) {
         $data['status'] = 'ok';
@@ -21,4 +21,4 @@ try {
     $con->close();
 }
 
-header("Location: http://localhost/MiChat/public/view/");
+echo json_encode($data);

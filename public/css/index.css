@@ -4,7 +4,7 @@ body{
     overflow: hidden;
 }
 .container{
-    height: 98vh;
+    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -16,7 +16,7 @@ body{
     color: #fff;
     padding: 10px;
     width: 100vw;
-    height: 10vh;
+    height: 12vh;
     position: fixed;
     top: 0;
     display: flex;
@@ -39,6 +39,10 @@ body{
     top: 30px;
 }
 
+.close{
+    display: none;
+}
+
 .header-li{
     list-style: none;
     text-align: center;
@@ -49,17 +53,24 @@ body{
     text-align: center;
 }
 
-.ll-li:hover{
-    border-bottom: solid 1px #fff;
-}
-
 .ll-a{
     all: unset;
     text-decoration: none;
     color: #fff;
     font-size: 20px;
     cursor: pointer;
-    
+    padding: 2px 10px;
+    box-sizing: border-box;
+    margin-top: 3px;
+}
+
+.ll-a:hover{
+            box-shadow: 0 1px 0 0 #fff;
+}
+
+.ll-logout{
+    font-size: 12px;
+    display: block;
 }
 
 .content{
@@ -68,7 +79,7 @@ body{
     width: 40%;
     height: 80vh;
     position: relative;
-    margin-top: 10vh;
+    margin-top: 12vh;
 }
 
 @media (max-width: 768px) {
@@ -76,9 +87,10 @@ body{
         width: 100%;
         margin-right: 10px;
         margin-left: 10px;
+        height: 80%;
     }
-    .login-logout{
-        top: 55px;
+    .header-li{
+        display: none;
     }
 }
 
@@ -149,14 +161,14 @@ body{
 }
 
 .btn-send:hover{
-    background-color: #028A0B;
+    background-color: #005C4B;
 }
 
 .msg{
     max-width: 70%;
     color: #fff;
     border-radius: 4px;
-    padding: 5px 30px;
+    padding: 5px 15px;
     margin: 5px;
     white-space: normal;
     border-radius: 10px 20px;
@@ -164,7 +176,6 @@ body{
 
 .name-user{
     text-transform: capitalize;
-    
 }
 
 .container-msg{
@@ -310,16 +321,17 @@ body{
 
 
 /* Modal */
-#contentMsg{
+.notification{
     position: fixed;
     right: 10px;
     width: 250px;
-    bottom: 100px;
+    top: 75px;
 }
 .modal {
+    position: relative;
     color: white !important;
     display: block;
-    background-color: #02B126;
+    background-color: #222;
     border-radius: 4px;
     padding: 10px;
     margin: 5px;

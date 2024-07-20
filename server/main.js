@@ -10,24 +10,26 @@ const server = createServer(app)
 app.use(cors());
 const io = new Server(server, {
     cors: {
-        origin: "http://localhost",
-        methods: ["GET", "POST"]
+        // origin: "http://localhost",
+        origin: "*",
+        methods: ["GET", "POST"],
+        allowedHeaders: ['my-custom-header'],
+        credentials: true
     }
 });
 
 io.on('connection', (socket) => {
-    socket.on('nuevo registro', (datos) => {
-        guardarUsuarioEnServidor(socket.id, datos.nameUser, datos.passUser)
+    socket.on('newRegister', (datos) => {
+        guardarUsuarioEnServidor(datos.user, datos.password)
         .then(data => {
             data = JSON.parse(data);
-            console.log(data.msg);
             if (data.status === "ok") {
                 var datos = {
                     'user': data.newUser,
                     'msg' : '!Hola¡ '+data.newUser+'. \n Bienvenido.'
                 };
-                socket.emit('inicioexitoso', datos);
-                socket.broadcast.emit('Nuevo usuario conectado',data.newUser+ ', Se a conectado.');
+                socket.emit('Welcome', datos);
+                socket.broadcast.emit('NewUserConnected',data.newUser+ ', Se a conectado.');
             }else{
                 console.log('hubo un error: ' + data.msg);
             }
@@ -43,14 +45,13 @@ io.on('connection', (socket) => {
     })
 })
 
-function guardarUsuarioEnServidor(idSocket, nameUser,passUser) {
+function guardarUsuarioEnServidor(nameUser,passUser) {
     var formData = new FormData();
     formData.append('nameUser', nameUser);
     formData.append('passUser', passUser);
-    formData.append('idSocket', idSocket);
 
     return new Promise((resolve, reject) => {
-        fetch('http://localhost/miChat/conexion/GuardarUsuario.php', {
+        fetch('http://localhost/miChat/APIs/saveUser.php', {
             method: 'POST', 
             body: formData
         })
