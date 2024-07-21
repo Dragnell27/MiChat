@@ -1,6 +1,15 @@
 const form = document.getElementById('form')
 const input = document.getElementById('input')
 const mensajes = document.getElementById('mensajes')
+const contentMsg = document.getElementById('contentMsg');
+
+function eliminarMensajes() {
+    if (contentMsg.childNodes.length > 0) {
+        contentMsg.removeChild(contentMsg.childNodes[0]);
+    }
+}
+
+setInterval(eliminarMensajes, 2500);
 
 socket.on('mensaje nuevo', (msg) => {
     const item = `
@@ -34,7 +43,7 @@ socket.on('mensaje propio', (msg) => {
     mensajes.scrollTop = mensajes.scrollHeight;
 });
 
-socket.on('Nuevo usuario conectado', (msg) => {
+socket.on('NewUserConnected', (msg) => {
     alertPersonalizado(msg);
 });
 
@@ -50,6 +59,10 @@ form.addEventListener('submit', (e) => {
     const msg = {
         user: user,
         text: input.value
+    }
+    if (!localStorage.getItem('user')){
+        alertPersonalizado('Inicia sesión para enviar mensajes.');
+        return
     }
     if (input.value) {
         socket.emit('newMessage', msg)

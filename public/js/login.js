@@ -1,5 +1,5 @@
-const contenedor = document.getElementById('fondo');
-const contentMsg = document.getElementById('contentMsg');
+import { alertPersonalizado } from './messages.js';
+
 const formModal = document.getElementById('register');
 
 // Elementos para el modal
@@ -42,37 +42,28 @@ formModal.addEventListener('submit', (e) => {
     }
 })
 
-
-function eliminarMensajes() {
-    if (contentMsg.childNodes.length > 0) {
-        contentMsg.removeChild(contentMsg.childNodes[0]);
-    }
-}
-
-setInterval(eliminarMensajes, 2000);
-
 socket.on('Welcome', (datosUser) => {
-    localStorage.setItem('user', datosUser['user']);
 
-    tModal.classList.toggle('transition-modal')
-    setTimeout(() => {
-        modal.classList.toggle('form-close')
-    }, 800);
+    if (datosUser['status'] == 'REGISTER' || datosUser['status'] == 'OK') {
+        localStorage.setItem('user', datosUser['user']);
 
-    setTimeout(function () {
-        alertPersonalizado(datosUser['msg']);
-    }, 1000);
+        logout.classList.remove('close');
+        login.classList.add('close');
 
-    logout.classList.remove('close');
-    login.classList.add('close');
+        tModal.classList.toggle('transition-modal')
+        setTimeout(() => {
+            modal.classList.toggle('form-close')
+        }, 800);
 
-    setTimeout(function () {
-        const user = localStorage.getItem('user');
-        nameUser.textContent = user;
-    }, 1200);
+        setTimeout(function () {
+            alertPersonalizado(datosUser['msg']);
+        }, 1000);
+
+        setTimeout(function () {
+            const user = localStorage.getItem('user');
+            nameUser.textContent = user;
+        }, 1200);
+        return
+    }
+    console.log(datosUser['msg']);
 });
-
-function alertPersonalizado(msg) {
-    const msgNotification = `<li id="myModal" class="modal">` + msg + `</li>`;
-    contentMsg.insertAdjacentHTML('beforeend', msgNotification);
-}
