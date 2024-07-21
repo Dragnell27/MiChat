@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-01-2024 a las 00:14:53
--- Versión del servidor: 10.4.28-MariaDB
--- Versión de PHP: 8.2.4
+-- Tiempo de generación: 21-07-2024 a las 21:08:37
+-- Versión del servidor: 10.4.32-MariaDB
+-- Versión de PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `michat`
 --
-CREATE DATABASE IF NOT EXISTS `michat` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `michat`;
 
 -- --------------------------------------------------------
 
@@ -30,9 +28,20 @@ USE `michat`;
 --
 
 CREATE TABLE `users` (
-  `id` varchar(50) NOT NULL,
-  `name_user` varchar(100) NOT NULL
+  `id` int(11) NOT NULL,
+  `name_user` varchar(100) NOT NULL,
+  `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `users`
+--
+
+INSERT INTO `users` (`id`, `name_user`, `password`) VALUES
+(67, 'jaider', '123'),
+(68, 'jaidere', '1233'),
+(69, 'jaider2', '12233'),
+(70, 'Duvan', '231');
 
 --
 -- Índices para tablas volcadas
@@ -43,6 +52,16 @@ CREATE TABLE `users` (
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

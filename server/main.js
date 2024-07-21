@@ -33,7 +33,14 @@ io.on('connection', (socket) => {
                 };
                 socket.emit('Welcome', loginData);
                 socket.broadcast.emit('NewUserConnected', data.newUser + ', Se a conectado.');
-            } else if (data.status === "NOT_FOUND") {
+            }else if (data.status == 'FAILURE'){
+                var loginData = {
+                    'status': data.status,
+                    'user': data.newUser,
+                    'msg': 'El usuario "' + data.newUser + '" ya existe pero la contraseña es incorrecta.'
+                };
+                socket.emit('Welcome', loginData);
+            }else if (data.status === "NOT_FOUND") {
                 guardarUsuarioEnServidor(datos.user, datos.password)
                     .then(data => {
                         data = JSON.parse(data);
@@ -52,13 +59,6 @@ io.on('connection', (socket) => {
                     .catch(error => {
                         console.error('Error:', error);
                     });
-            }else if (data.status == 'FAILURE'){
-                var loginData = {
-                    'status': data.status,
-                    'user': data.newUser,
-                    'msg': 'El usuario "' + data.newUser + '" ya existe pero la contraseña es incorrecta.'
-                };
-                socket.emit('Welcome', loginData);
             }
         })
     })
