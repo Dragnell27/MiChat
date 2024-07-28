@@ -126,6 +126,13 @@ io.on('connection', (socket) => {
                 'user': user,
                 'status': 'OK',
             }
+            if (!usuarios.some(user => user.user == data.newUser)) {
+                const OUser = {
+                    user: data.newUser,
+                    socketId: socket.id
+                }
+                usuarios.push(OUser)
+            }
             socket.emit('msg-DuplicateSession', data)
             socket.emit('mensaje propio', msg.text)
             socket.broadcast.emit('mensaje nuevo', msg)
