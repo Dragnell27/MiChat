@@ -58,7 +58,7 @@ io.on('connection', (socket) => {
                             }]
                             usuarios.push(OUser)
                         } else {
-                            console.log('hubo un error: ' + data.msg)
+                            console.error('hubo un error: ' + data.msg)
                         }
                     })
                     .catch(error => {
@@ -107,7 +107,6 @@ io.on('connection', (socket) => {
                 'status': 'SessionFailure',
             }
             socket.emit('msg-DuplicateSession', data)
-            console.log('no se envía mensaje');
         }
         else {
             var data = {
@@ -117,14 +116,12 @@ io.on('connection', (socket) => {
             socket.emit('msg-DuplicateSession', data)
             socket.emit('mensaje propio', msg.text)
             socket.broadcast.emit('mensaje nuevo', msg)
-            console.log('se envía mensaje 2');
         }
     }
     )
 
     socket.on('disconnect', () => {
         usuarios = usuarios.filter(u => u.socketId !== socket.id)
-        console.log('El cliente se ha desconectado: ' + socket.id)
     })
 })
 
@@ -141,7 +138,6 @@ function validUserOnline(usuarios, user) {
 function validUser(usuarios, user, socketId) {
     for (let i = 0; i < usuarios.length; i++) {
         if (usuarios[i].user === user && usuarios[i].socketId === socketId) {
-            console.log('desde el mismo dispositivo')
             return false
         }
     }
