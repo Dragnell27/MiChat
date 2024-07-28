@@ -56,6 +56,7 @@ export function alertPersonalizado(msg) {
 socket.on('msg-DuplicateSession', (data) => {
     if (data.status == 'SessionFailure') {
         alertPersonalizado('Error: Ya tienes una sesión activa. Inicia sesión en otro navegador con un usuario diferente')
+        input.value = ''
     } else {
         input.value = ''
     }
@@ -64,9 +65,9 @@ socket.on('msg-DuplicateSession', (data) => {
 form.addEventListener('submit', (e) => {
     e.preventDefault()
 
-    const user = localStorage.getItem('user');
+    const m_user = localStorage.getItem('user');
     const msg = {
-        user: user,
+        user: m_user,
         text: input.value
     }
 

@@ -29,6 +29,7 @@ socket.on('DuplicateSession', (data) => {
 })
 
 btn_logout.addEventListener('click', () => {
+    socket.emit('logout',user);
     localStorage.removeItem('user');
     window.location.href = 'http://localhost/MiChat/public/';
 });

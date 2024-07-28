@@ -30,6 +30,13 @@ io.on('connection', (socket) => {
                     'user': data.newUser,
                     'msg': 'Hola de nuevo ' + data.newUser + '.'
                 }
+                if (!usuarios.some(user => user.user == data.newUser)) {
+                    const OUser = {
+                        user: data.newUser,
+                        socketId: socket.id
+                    }
+                    usuarios.push(OUser)
+                }
                 socket.emit('Welcome', loginData)
                 socket.broadcast.emit('NewUserConnected', data.newUser + ', Se a conectado.')
             } else if (data.status == 'FAILURE') {
@@ -50,6 +57,12 @@ io.on('connection', (socket) => {
                                     'user': data.newUser,
                                     'msg': '!Hola¡ ' + data.newUser + '. \n Bienvenido.'
                                 }
+                            OUser = {
+                                user: data.newUser,
+                                socketId: socket.id
+                            }
+                            usuarios.push(OUser)
+                            console.log(usuarios)
                             socket.emit('Welcome', newDatos)
                             socket.broadcast.emit('NewUserConnected', data.newUser + ', Se a conectado.')
                             const OUser = [{
@@ -117,8 +130,11 @@ io.on('connection', (socket) => {
             socket.emit('mensaje propio', msg.text)
             socket.broadcast.emit('mensaje nuevo', msg)
         }
-    }
-    )
+    })
+
+    socket.on('logout', () => {
+        usuarios = usuarios.filter(u => u.socketId !== socket.id)
+    })
 
     socket.on('disconnect', () => {
         usuarios = usuarios.filter(u => u.socketId !== socket.id)
@@ -133,7 +149,6 @@ function validUserOnline(usuarios, user) {
     }
     return false
 }
-
 
 function validUser(usuarios, user, socketId) {
     for (let i = 0; i < usuarios.length; i++) {
