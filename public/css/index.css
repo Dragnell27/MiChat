@@ -315,6 +315,17 @@ body{
     transform: scale(1.2);
 }
 
+#alertPasswordError{
+    padding: 0;
+    margin: 4px 0;
+    font-size: 14px;
+    color: #f44;
+}
+
+.alertPasswordError{
+    height: 4px;
+}
+
 .form-close{
     z-index: -1;
 }

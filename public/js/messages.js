@@ -52,6 +52,15 @@ export function alertPersonalizado(msg) {
     contentMsg.insertAdjacentHTML('beforeend', msgNotification);
 }
 
+// Registrar el listener una sola vez
+socket.on('msg-DuplicateSession', (data) => {
+    if (data.status == 'SessionFailure') {
+        alertPersonalizado('Error: Ya tienes una sesión activa. Inicia sesión en otro navegador con un usuario diferente')
+    } else {
+        input.value = ''
+    }
+});
+
 form.addEventListener('submit', (e) => {
     e.preventDefault()
 
@@ -60,12 +69,12 @@ form.addEventListener('submit', (e) => {
         user: user,
         text: input.value
     }
-    if (!localStorage.getItem('user')){
+
+    if (!localStorage.getItem('user')) {
         alertPersonalizado('Inicia sesión para enviar mensajes.');
-        return
+        return;
     }
     if (input.value) {
-        socket.emit('newMessage', msg)
-        input.value = ''
+        socket.emit('newMessage', msg);
     }
-})
+});

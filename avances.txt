@@ -1,6 +1,7 @@
 21-07-2024
 Se manejo el envió de mensajes cuando se detecta un usuario nuevo registrado y el inicio o registro de un usuario con el mismo login
 Ideas pendientes: 
-1. mostrar en el login cuando un usuario existe pero la contraseña no coincide.
-2. detectar si un usuario ya esta conectado y no permitir la conexión desde otra pestaña
+1. mostrar en el login cuando un usuario existe pero la contraseña no coincide. --completado
+2. detectar si un usuario ya esta conectado y no permitir la conexión desde otra pestaña -- Completado: 
+Permite inicio de sesión pero no permite enviar mensajes
 ----------------------------------------------------------------------------------------------------------------

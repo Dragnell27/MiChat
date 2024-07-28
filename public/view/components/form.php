@@ -1,5 +1,7 @@
 <div class="form-modal form-close" id="form-modal">
+<!-- form-close -->
     <form class="form-control transition-modal" id="register">
+    <!-- transition-modal -->
         <div class="form-container">
             <div class="form-div">
                 <label for="nameUser" class="form-label" >Usuario:<span>*</span></label>
@@ -8,6 +10,9 @@
             <div class="form-div">
                 <label for="password" class="form-label">Contraseña:<span>*</span></label>
                 <input class="form-text" type="password" id="password" placeholder="Escriba su contraseña">
+            </div>
+            <div class="alertPasswordError">
+                <span id="alertPasswordError"></span>
             </div>
             <div class="form-btn">
                 <input type="submit" name="" value="Iniciar sesión / Registrarse" id="" class="btn">

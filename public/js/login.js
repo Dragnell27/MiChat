@@ -2,6 +2,9 @@ import { alertPersonalizado } from './messages.js';
 
 const formModal = document.getElementById('register');
 
+//Contraseña incorrecta
+const alertPasswordError = document.getElementById('alertPasswordError');
+
 // Elementos para el modal
 const modal = document.getElementById('form-modal');
 const btnOpen = document.getElementById('open-form');
@@ -55,15 +58,20 @@ socket.on('Welcome', (datosUser) => {
             modal.classList.toggle('form-close')
         }, 800);
 
-        setTimeout(function () {
+        setTimeout(() => {
             alertPersonalizado(datosUser['msg']);
         }, 1000);
 
-        setTimeout(function () {
+        setTimeout(() => {
             const user = localStorage.getItem('user');
             nameUser.textContent = user;
         }, 1200);
         return
+    }else{
+        alertPasswordError.innerHTML = 'El usuario ya existe y la contraseña es incorrecta.'
+        setTimeout(() => {
+            alertPasswordError.innerHTML = ''
+        },2000)
     }
-    console.log(datosUser['msg']);
+    
 });
