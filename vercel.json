@@ -1,20 +1,12 @@
 {
     "version": 2,
     "builds": [
-        { "src": "server/main.js", "use": "@vercel/node" },
-        { "src": "APIs/connection.php", "use": "@vercel/php" },
-        { "src": "APIs/saveUser.php", "use": "@vercel/php" },
-        { "src": "APIs/verifyExistingUser.php", "use": "@vercel/php" },
-        { "src": "public/index.php", "use": "@vercel/php" },
-        { "src": "public/index.php", "use": "@vercel/php" },
-        { "src": "public/index.php", "use": "@vercel/php" },
-        { "src": "public/index.php", "use": "@vercel/php" }
+        { "src": "/api/index.php", "use": "@vercel/php" },
+        { "src": "/public/**", "use": "@vercel/static" }
+        
     ],
     "routes": [
-        { "src": "/api/node/(.*)", "dest": "server/main.js" },
-        { "src": "/api/php/connection.php", "dest": "Apis/APIs/connection.php"},
-        { "src": "/api/php/saveUser.php", "dest": "APIs/saveUser.php" },
-        { "src": "/api/php/verifyExistingUser.php", "dest": "APIs/verifyExistingUser.php" },
-        { "src": "/(.*)", "dest": "public/index.php" }
+        
+        { "src": "/(.*)", "dest": "api/index.php" }
     ]
 }
