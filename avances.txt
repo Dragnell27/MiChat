@@ -5,3 +5,27 @@ Ideas pendientes:
 2. detectar si un usuario ya esta conectado y no permitir la conexión desde otra pestaña -- Completado: 
 Permite inicio de sesión pero no permite enviar mensajes
 ----------------------------------------------------------------------------------------------------------------
+
+APIs
+    connection.php
+    saveUser.php
+    verifyExistingUser.php
+public
+    css
+        index.css
+    js
+        index.js
+        login.js
+        messages.js
+        socket.io.min.js
+    view
+        components
+            form.php
+            header.php
+        app.php
+    index.php
+server
+    main.js
+package-lock.json
+package.json
+vercel.json
