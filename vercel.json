@@ -23,11 +23,6 @@
         "src": "/(.*)",
         "dest": "/public/$1"
       }
-    ],
-    "functions": {
-      "APIs/**/*.php": {
-        "runtime": "@vercel/php"
-      }
-    }
+    ]
   }
   
