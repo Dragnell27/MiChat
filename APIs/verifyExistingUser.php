@@ -14,10 +14,10 @@ try {
                 if ($row['password'] == $_POST['passUser']) {
                     $data['status'] = 'OK';
                     $data['msg'] = 'Inicio de sesión exitoso';
-                    $data['newUser'] = $row['name_user'];
+                    $data['newUser'] = $row['username'];
                 }else{
                     $data['status'] = 'FAILURE';
-                    $data['newUser'] = $row['name_user'];
+                    $data['newUser'] = $row['username'];
                     $data['msg'] = 'El usuario existe pero la contraseña es incorrecta';
                 }
             }
