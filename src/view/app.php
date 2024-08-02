@@ -18,6 +18,6 @@
         <ul id="contentMsg" class="notification">
         </ul>
         <script>
-        const socket = io('http://localhost:3000');
+        const socket = io('https://servidormichat.onrender.com');
         </script>
     </div>
