@@ -4,8 +4,8 @@ include_once('./connection.php');
 $data = array();
 $con = con();
 try {
-    // $query = 'insert into users (name_user,password) values("' . $_POST["nameUser"] . '","' . $_POST["passUser"] . '")';
-    $query = 'insert into users (name_user,password) values("jaider","123")';
+    $query = 'insert into users (username,password) values("' . $_POST["nameUser"] . '","' . $_POST["passUser"] . '")';
+    // $query = 'insert into users (name_user,password) values("jaider","123")';
     $resultado = mysqli_query($con, $query);
     if ($resultado) {
         $data['status'] = 'ok';

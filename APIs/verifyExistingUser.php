@@ -6,7 +6,7 @@ $data = array();
 $con = con();
 
 try {
-    $query = 'SELECT * FROM users WHERE name_user = ' . '"' . $_POST['nameUser'] . '"';
+    $query = 'SELECT * FROM users WHERE username = ' . '"' . $_POST['nameUser'] . '"';
     $result = $con->query($query);
     if ($result) {
         if ($result->num_rows > 0) {
