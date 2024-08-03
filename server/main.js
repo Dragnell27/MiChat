@@ -57,7 +57,7 @@ io.on('connection', (socket) => {
                                     'user': data.newUser,
                                     'msg': '!Hola¡ ' + data.newUser + '. \n Bienvenido.'
                                 }
-                            OUser = {
+                            const OUser = {
                                 user: data.newUser,
                                 socketId: socket.id
                             }
@@ -65,7 +65,7 @@ io.on('connection', (socket) => {
                             console.log(usuarios)
                             socket.emit('Welcome', newDatos)
                             socket.broadcast.emit('NewUserConnected', data.newUser + ', Se a conectado.')
-                            const OUser = [{
+                            OUser = [{
                                 user: data.newUser,
                                 socketId: socket.id
                             }]
