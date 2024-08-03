@@ -31,7 +31,7 @@ socket.on('DuplicateSession', (data) => {
 btn_logout.addEventListener('click', () => {
     socket.emit('logout',user);
     localStorage.removeItem('user');
-    window.location.href = 'https://michat-production-a5c7.up.railway.app/d';
+    window.location.href = 'https://michat-production-a5c7.up.railway.app/';
 });
 
 checkLocalStorageItem();
